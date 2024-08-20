@@ -8,11 +8,33 @@ struct SimulationChannelDescriptorData;
 class LOGICAPI SimulationChannelDescriptor
 {
 public:
+    /**
+     * This toggles the channel. BIT_LOW becomes BIT_HIGH, BIT_HIGH becomes BIT_LOW. The current 
+     * Sample Number will become the new BitState (BIT_LOW or BIT_HIGH), and all samples after that will 
+     * also be the new BitState, untill we toggle again.
+     */
     void Transition();
+
+    /**
+     * Often we don’t want to keep track of the current BitState, which toggles every time we call Transition. 
+     * TransitionIfNeeded checks the current BitState, and only transitions if the current BitState doesn’t 
+     * match the one we provide. In other words “Change to this bit_state, if we’re not already”.
+     */
     void TransitionIfNeeded(BitState bit_state);
+    /**
+     * We can move forward in the stream by a specific number of samples. This function will return how
+many times the input toggled (changed from a high to a low, or low to a high) to make this move.
+     */
     void Advance(U32 num_samples_to_advance);
 
+    /**
+     * This function lets you directly ask what the current BitState is.
+     */
     BitState GetCurrentBitState();
+
+    /**
+     * This function lets you ask what the current SampleNumber is.
+     */
     U64 GetCurrentSampleNumber();
 
 public:  //don't use

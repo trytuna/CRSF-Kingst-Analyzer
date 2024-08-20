@@ -31,17 +31,17 @@ class LOGICAPI AnalyzerResults
 {
 public:
     enum MarkerType { Dot, ErrorDot, Square, ErrorSquare, UpArrow, DownArrow, X, ErrorX, Start, Stop, One, Zero };
-    AnalyzerResults(); //you must call the base class contructor in your constructor
+    AnalyzerResults(); // you must call the base class contructor in your constructor
     virtual ~AnalyzerResults();
 
-    //override:
+    // override:
     virtual void GenerateBubbleText(U64 frame_index, Channel &channel, DisplayBase display_base) = 0;
     virtual void GenerateExportFile(const char *file, DisplayBase display_base, U32 export_type_user_id) = 0;
     virtual void GenerateFrameTabularText(U64 frame_index, DisplayBase display_base) = 0;
     virtual void GeneratePacketTabularText(U64 packet_id, DisplayBase display_base) = 0;
     virtual void GenerateTransactionTabularText(U64 transaction_id, DisplayBase display_base) = 0;
 
-public:  //adding/setting data
+public: // adding/setting data
     void AddMarker(U64 sample_number, MarkerType marker_type, Channel &channel);
 
     U64 AddFrame(const Frame &frame);
@@ -52,7 +52,7 @@ public:  //adding/setting data
 
     void CommitResults();
 
-public:  //data access
+public: // data access
     U64 GetNumFrames();
     U64 GetNumPackets();
     Frame GetFrame(U64 frame_id);
@@ -64,12 +64,12 @@ public:  //data access
     U32 GetTransactionContainingPacket(U64 packet_id);
     void GetPacketsContainedInTransaction(U64 transaction_id, U64 **packet_id_array, U64 *packet_id_count);
 
-public:  //text results setting and access:
+public: // text results setting and access:
     void ClearResultStrings();
     void AddResultString(const char *str1, const char *str2 = NULL, const char *str3 = NULL, const char *str4 = NULL, const char *str5 = NULL, const char *str6 = NULL);   //multiple strings will be concatinated
     void GetResultStrings(char const ***result_string_array, U32 *num_strings);
 
-protected:  //use these when exporting data.
+protected: // use these when exporting data.
     bool UpdateExportProgressAndCheckForCancel(U64 completed_frames, U64 total_frames);
 
 public:  //don't use
@@ -96,4 +96,4 @@ public:
     std::string GetTabularTextString();
 };
 
-#endif  //ANALYZER_RESULTS
+#endif //ANALYZER_RESULTS

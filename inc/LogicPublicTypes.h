@@ -38,8 +38,8 @@ enum BitState { BIT_LOW, BIT_HIGH };
 
 #define UNDEFINED_CHANNEL Channel(0xFFFFFFFFFFFFFFFFull, 0xFFFFFFFF)
 
-//Note this class can not add, remove or reorder member variables without breaking binary compatibilty
-//This function can add non-virtual functions as long as they are listed after existing functions.
+// Note this class can not add, remove or reorder member variables without breaking binary compatibilty
+// This function can add non-virtual functions as long as they are listed after existing functions.
 class LOGICAPI Channel
 {
 public:
@@ -58,7 +58,7 @@ public:
     U32 mChannelIndex;
 };
 
-#include <memory> //required by some compilers for std::auto_ptr
+#include <memory> // required by some compilers for std::auto_ptr
 
 #ifdef _MSC_VER
 #define snprintf _snprintf_s

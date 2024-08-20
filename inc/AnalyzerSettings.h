@@ -12,18 +12,44 @@ public:
     virtual ~AnalyzerSettings();
 
     //Implement
-    virtual bool SetSettingsFromInterfaces() = 0;//Get the settings out of the interfaces, validate them, and save them to your local settings vars.
-    virtual void LoadSettings(const char *settings) = 0;    //Load your settings from the provided string
-    virtual const char *SaveSettings() = 0;  //Save your settings to a string and return it. (use SetSettingsString, return GetSettingsString)
+    /**
+     * Get the settings out of the interfaces, validate them, and save them to your local settings vars.
+     */
+    virtual bool SetSettingsFromInterfaces() = 0;
+
+    /**
+     * Load your settings from the provided string
+     */
+    virtual void LoadSettings(const char *settings) = 0;
+
+    /**
+     * Save your settings to a string and return it. (use SetSettingsString, return GetSettingsString)
+     */
+    virtual const char *SaveSettings() = 0;
     virtual const char *GetSettingBrief();
 
 protected:
-    //Use, but don't override/implement
-    void ClearChannels(); //clear all the reported channels before adding them, if you need to change them.
-    void AddChannel(Channel &channel, const char *channel_label, bool is_used);    //used to report the channels we're working with to the outside world.
+    // Use, but don't override/implement
+    /**
+     * Clear all the reported channels before adding them, if you need to change them.
+     */
+    void ClearChannels();
 
-    void SetErrorText(const char *error_text);    //if settings are invalid, set the text to display to the user (used in SetSettingsFromInterfaces)
-    void AddInterface(AnalyzerSettingInterface *analyzer_setting_interface);   //add your interfaces so the outside world can access.  You'll need to keep copies of all the pointers you provide.
+    /**
+     * Used to report the channels we're working with to the outside world.
+     */
+    void AddChannel(Channel &channel, const char *channel_label, bool is_used);
+
+    /**
+     * If settings are invalid, set the text to display to the user (used in SetSettingsFromInterfaces)
+     */
+    void SetErrorText(const char *error_text);
+
+    /**
+     * Add your interfaces so the outside world can access. 
+     * You'll need to keep copies of all the pointers you provide.
+     */
+    void AddInterface(AnalyzerSettingInterface *analyzer_setting_interface);
 
     void AddExportOption(U32 user_id, const char *menu_text);
     void AddExportExtension(U32 user_id, const char *extension_description, const char *extension);
@@ -55,4 +81,4 @@ protected:
     struct AnalyzerSettingsData *mData;
 };
 
-#endif  //ANALYZER_SETTINGS
+#endif //ANALYZER_SETTINGS
