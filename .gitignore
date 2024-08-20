@@ -1,0 +1,5 @@
+/SerialAnalyzer
+/SpiAnalyzer
+.DS_Store
+/CRSFAnalyzer/Mac/*.o
+/CRSFAnalyzer/Mac/*.dylib
