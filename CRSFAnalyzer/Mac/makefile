@@ -28,6 +28,6 @@ install:
 # Running the application from the command line could be handy to see logs from the analyzer code.
 # There are no other debug methods than logging to stdout that I know of.
 # 
-# Run this command to speed up your development workflow: make install run
+# Run this command to speed up your development workflow: make all run
 run:
 	$(APPLICATION_PATH)/Contents/MacOS/KingstVIS
