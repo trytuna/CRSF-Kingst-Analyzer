@@ -19,4 +19,6 @@ In order to get this compiled on macOS with an Apple Silicon processor I had to 
 
 ### IntelliSense warnings
 
-If you are using vscode you propably getting IntelliSense warnings. This could be because your `cppStandard` is set to `c++17` by default. Setting it to `c++11` (https://github.com/trytuna/CRSF-Kingst-Analyzer/blob/ef19ad05a86a62e910794a3bbbd134fec93a006a/.vscode/c_cpp_properties.json#L15) fixes these warnings for me.
+If you are using vscode you propably getting IntelliSense warnings. This could be because your `cppStandard` is set to `c++17` by default. Setting it to `c++11` fixes these warnings for me.
+
+https://github.com/trytuna/CRSF-Kingst-Analyzer/blob/ef19ad05a86a62e910794a3bbbd134fec93a006a/.vscode/c_cpp_properties.json#L15
