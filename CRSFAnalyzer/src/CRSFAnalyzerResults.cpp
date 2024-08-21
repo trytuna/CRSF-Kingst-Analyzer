@@ -22,27 +22,24 @@ void CRSFAnalyzerResults::GenerateBubbleText(U64 frame_index, Channel & /*channe
     ClearResultStrings();
     Frame frame = GetFrame(frame_index);
 
-    bool framing_error = false;
-    if ((frame.mFlags & FRAMING_ERROR_FLAG) != 0) {
-        framing_error = true;
-    }
-
-
     char number_str[128];
     AnalyzerHelpers::GetNumberString(frame.mData1, display_base, 8, number_str, 128);
+    printf("bubble text %llu data => %llu number_str => %s\n", frame_index, frame.mData1, number_str);
 
     char result_str[128];
 
-    AddResultString("A");
-    AddResultString("Addr");
+    // switch (frame.mData1)
+    // {
+    // case 0xEE:
+    //     // sync
+    //     break;
+    // case 
+    // default:
+    //     break;
+    // }
 
-    if(framing_error == false) {
-        snprintf(result_str, sizeof(result_str), "Addr: %s", number_str);
-        AddResultString(result_str);
-
-        snprintf(result_str, sizeof(result_str), "Address: %s", number_str);
-        AddResultString(result_str);
-    }
+    snprintf(result_str, sizeof(result_str), "%s", number_str);
+    AddResultString(result_str);
 }
 
 void CRSFAnalyzerResults::GenerateExportFile(const char *file, DisplayBase display_base, U32 /*export_type_user_id*/)
@@ -92,10 +89,18 @@ void CRSFAnalyzerResults::GenerateExportFile(const char *file, DisplayBase displ
     AnalyzerHelpers::EndFile(f);
 }
 
-void CRSFAnalyzerResults::GenerateFrameTabularText(U64 /*frame_index*/, DisplayBase /*display_base*/)
+void CRSFAnalyzerResults::GenerateFrameTabularText(U64 frame_index, DisplayBase display_base)
 {
-    ClearResultStrings();
-    AddResultString("not supported");
+    ClearTabularText();
+    Frame frame = GetFrame(frame_index);
+
+    char number_str[128];
+    AnalyzerHelpers::GetNumberString(frame.mData1, display_base, 8, number_str, 128);
+
+    char result_str[128];
+
+    snprintf(result_str, sizeof(result_str), "%s", number_str);
+    AddTabularText(result_str);
 }
 
 void CRSFAnalyzerResults::GeneratePacketTabularText(U64 /*packet_id*/, DisplayBase /*display_base*/)
